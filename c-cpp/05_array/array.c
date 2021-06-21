@@ -8,7 +8,7 @@ struct array {
 	int *arr;
 };
 
-void dump(struct array *array)
+void dump(struct array *array)//随便堆放
 {
 	int idx;
 
@@ -35,7 +35,9 @@ int insert(struct array *array, int elem)
 	if (idx < array->used)
 		memmove(&array->arr[idx+1], &array->arr[idx],
 			(array->used - idx) * sizeof(int));
-
+		//void *memmove(void *str1, const void *str2, size_t n)
+		//copies n characters from str2 to str1, but for overlapping memory blocks,
+		// memmove() is a safer approach than memcpy().
 	array->arr[idx] = elem;
 	array->used++;
 	return idx;
@@ -69,9 +71,10 @@ int search(struct array *array, int elem)
 int main()
 {
 	int idx;
-	struct array ten_int = {10, 0, NULL};
+	struct array ten_int = {10, 0, NULL};//size used *arr
 
 	alloc(&ten_int);
+	//alloc()在栈上创建空间，函数执行结束后自动被释放，效率很高但内存空间有限
 	if (!ten_int.arr)
 		return -1;
 	insert(&ten_int, 1);

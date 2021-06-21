@@ -6,7 +6,7 @@
 Array* arrayCreate()
 {
     struct Array *array = NULL;
-    array = malloc(sizeof(*array));
+    array = malloc(sizeof(*array));//void *malloc(unsigned int size);
     if (NULL == array)
     {
         return NULL;
@@ -35,6 +35,7 @@ void arrayInit(Array *array, int size, int typeSize)
     }
 
     void *p = calloc(1, size* typeSize);
+    //void* calloc£¨unsigned int num£¬unsigned int size£©;
     if (NULL == p)
     {
         return;
